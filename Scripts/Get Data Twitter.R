@@ -18,7 +18,7 @@ far_right_parties = lists_members(
 )
 
 
-ids_far_right_parties = tibble(far_right_parties$user_id)
+name_far_right_parties = tibble(far_right_parties$screen_name)
 
 
 # Get the list of Far Right Culture
@@ -35,7 +35,7 @@ far_right_culture = lists_members(
   parse = TRUE,
 )
 
-ids_far_right_culture = tibble(far_right_culture$user_id)
+name_far_right_culture = tibble(far_right_culture$screen_name)
 
 # Get the list of Right-wing Parties
 
@@ -52,7 +52,7 @@ right_wing_parties = lists_members(
 )
 
 
-ids_right_wing_parties = tibble(right_wing_parties$user_id)
+name_right_wing_parties = tibble(right_wing_parties$screen_name)
 
 # Get the list of Right-wing Culture
 
@@ -68,5 +68,5 @@ right_wing_culture = lists_members(
   parse = TRUE,
 )
 
-ids_right_wing_culture = tibble(right_wing_culture$user_id)
+name_right_wing_culture = tibble(right_wing_culture$screen_name)
 
