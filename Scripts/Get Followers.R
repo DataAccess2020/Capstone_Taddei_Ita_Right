@@ -2,23 +2,20 @@
 
 # First we transform the SCREEN_NAME in the dataframes in string characters
 
-ch_fr_culture = unlist(c(name_far_right_culture))
+list_fr_culture = c(far_right_culture$screen_name)
+
+list_fr_culture[12] #now it gave use all the Screen Name of the pages, now we can iterate with a for loop
 
 # Now we get the follower throungh rtweet
 
-auth_as('access')
 auth_as('taddo')
 
-prova = c("NeraRadio", "Zetazeroalfa451", "PP_Crotone")
-prova[3]
+getAllFollowers <- function (name) { 
+    user_follower <- get_followers(name, n=Inf, retryonratelimit = T)
+    Sys.sleep(1)
+    return(user_follower) }
 
-prova_follow = get_followers(
-  user = prova,
-  n = 5000,
-  cursor = "-1",
-  retryonratelimit = NULL,
-  parse = TRUE,
-  verbose = TRUE,
-  token = NULL,
-  page = lifecycle::deprecated()
-)
+follower_fr_culture <- lapply(X = list_fr_culture, FUN = getAllFollowers)
+# It works pretty well! It creates a large list with n element = n pages we need to get the follower
+# Inside of it there's every user id that follows the pages
+
