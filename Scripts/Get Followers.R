@@ -34,6 +34,11 @@ list_rw_culture = c(right_wing_culture$screen_name)
 
 follower_rw_culture <- lapply(X = list_rw_culture, FUN = getAllFollowers)
 
+# RIGHT-WING PARTIES
+
+list_rw_parties = c(right_wing_parties$screen_name)
+
+follower_rw_parties <- lapply(X = list_rw_parties, FUN = getAllFollowers)
 
 
 
