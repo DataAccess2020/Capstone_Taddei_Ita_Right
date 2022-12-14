@@ -18,11 +18,24 @@ tot_followers = rbind(f_fr_c, f_fr_p, f_rw_c, f_rw_p)
 
 # We change the coloumns' name to be more readble
 
-colnames(tot_followers) = c("follower_id", "group")
+colnames(tot_followers) = c("follower_id", "grp")
 
 # We export it:
 
 write.csv2(tot_followers,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Total Followers\\Total Followers.csv", row.names=FALSE)
+
+# We can see how many followers graphically the four groups have
+library(ggplot2)
+
+ggplot(tot_followers, aes(x = grp)) +
+  stat_count(width = 0.5) +
+  xlab("Group") +
+  ylab("Number of Total Followers") +
+  theme_bw()
+
+############################
+# sistemare colori e numeri
+
 
 # Now we see how many common followers the four groups have
 
