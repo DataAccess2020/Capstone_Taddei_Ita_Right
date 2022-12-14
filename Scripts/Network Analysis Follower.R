@@ -24,7 +24,14 @@ colnames(tot_followers) = c("follower_id", "group")
 
 write.csv2(tot_followers,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Total Followers\\Total Followers.csv", row.names=FALSE)
 
-# solo per vedere diffreneze togliere dupilcati e vedere quanto cambia
+# Now we see how many common followers the four groups have
+
+unique_follower = tot_followers %>% distinct(follower_id, .keep_all = TRUE)
+
+554393-447810 # [1] 106583 common followers between the four groups
+
+
+
 
 # cercare di capire come fare la parte di collegamento grafico
 
