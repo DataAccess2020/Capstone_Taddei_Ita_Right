@@ -40,7 +40,7 @@ write.csv2(df_rw_p,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&C
 
 library(dplyr)
 
-# We spceify also the coloumn from_id (wich are the followers)
+# We specify also the coloumn from_id (wich are the followers)
 
 clean_df_fr_c = df_fr_c %>% distinct(from_id, .keep_all = TRUE)
 
@@ -66,7 +66,7 @@ write.csv2(clean_df_rw_c,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-
 # Right wing Parties
 write.csv2(clean_df_rw_p,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Clean Followers DF\\Clean follower rw parties.csv", row.names=FALSE)
 
-
+# COMMENT THE DIFFRENCES BETWEEN DATASET REMOVING DUPLICATES
 
 
 
