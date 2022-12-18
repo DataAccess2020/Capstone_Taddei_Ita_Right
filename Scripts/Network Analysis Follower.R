@@ -28,13 +28,14 @@ write.csv2(tot_followers,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-
 library(ggplot2)
 
 ggplot(tot_followers, aes(x = grp)) +
-  geom_bar(stat="count",width=0.4, alpha = 1, fill = c("red", "black", "yellow", "darkblue"),  binwidth = 1) +
+  geom_bar(stat="count",width=0.7, alpha = 1, fill = c("red", "black", "yellow", "darkblue"),  binwidth = 0.5) +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = -0.5, colour = "black") +
   xlab("Group") +
   ylab("Number of Total Followers") +
   scale_x_discrete(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
   scale_y_continuous(labels = scales::comma)+
-  theme_bw()
+  ggtitle("Total Followers by group")+
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
 
 # Now we see how many common followers the four groups have
 
@@ -72,13 +73,37 @@ ufdf <- unique_follower %>%
 
 total_foll_com = rbind(cfdf, ufdf)
 
-ggplot(total_foll_com) +
-  geom_bar(aes(x = grp, y = follower_id, fill = cmmn), 
-           stat="identity")
+# Now we see with histograms the quotes of common and unique followers in every group
+
+# Number of follower Comparison within groups
+
+ggplot(total_foll_com, aes(factor(grp), fill = factor(cmmn))) +
+  geom_bar(position = position_dodge2(preserve = "single"))+
+  geom_text(aes(label = after_stat(count)), stat = "count", position=position_dodge(width=0.9), vjust=-0.5, colour = "black") +
+  xlab("Group") +
+  ylab("Number of Total Followers") +
+  scale_x_discrete(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Follower")+
+  scale_fill_hue(labels = c("Unique", "Common"))+
+  ggtitle("Common and Unique Followers divided by groups", "Number of follower Comparison within groups")+
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
+
+# Proportion of follower Comparison within groups
+
+ggplot(total_foll_com, aes(factor(grp), fill = factor(cmmn))) +
+  geom_bar(position = "fill")+
+  xlab("Group") +
+  ylab("Number of Total Followers") +
+  scale_x_discrete(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Follower")+
+  scale_fill_hue(labels = c("Unique", "Common"))+
+  ggtitle("Common and Unique Followers divided by groups", "Proportion of follower Comparison within groups")+
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
 
 
-
-
+###################################
 # cercare di capire come fare la parte di collegamento grafico
 
 # function to generate edgelist across all MPs
