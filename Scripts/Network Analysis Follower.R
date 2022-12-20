@@ -118,22 +118,17 @@ ggplot(total_foll_com, aes(factor(cmmn), fill = factor(grp))) +
 
 
 
-###################################
-# cercare di capire come fare la parte di collegamento grafico
-
-install.packages("igraph")
-library(igraph)
-
-follow_igrap = graph_from_data_frame(total_foll_com, directed = TRUE, vertices = NULL)
-
-cf_igrap = graph_from_data_frame(common_follower, directed = TRUE, vertices = NULL)
-
-print(follow_igrap)
 
 
-plot.igraph(cf_igrap)
 
-layout_with_lgl(cf_igrap)
+
+
+
+
+
+
+
+
 
 
 
