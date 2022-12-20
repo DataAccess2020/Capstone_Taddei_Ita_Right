@@ -102,18 +102,38 @@ ggplot(total_foll_com, aes(factor(grp), fill = factor(cmmn))) +
   ggtitle("Common and Unique Followers divided by groups", "Proportion of follower Comparison within groups")+
   theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
 
+# Number of follower comparison between groups
+
+ggplot(total_foll_com, aes(factor(cmmn), fill = factor(grp))) +
+  geom_bar(position = position_dodge2(preserve = "single"))+
+  geom_text(aes(label = after_stat(count)), stat = "count", position=position_dodge(width=0.9), vjust=-0.5, colour = "black") +
+  xlab("Follower Type") +
+  ylab("Number of Total Followers") +
+  scale_x_discrete(labels = c('Unique','Common'))+
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Group")+
+  scale_fill_hue(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
+  ggtitle("Common and Unique Followers divided by groups", "Number of follower comparison between groups")+
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
+
+
 
 ###################################
 # cercare di capire come fare la parte di collegamento grafico
 
-# function to generate edgelist across all MPs
-create_edgelist <- function(follower_df) {
-  follower_df |> 
-    dplyr::nest_by(from_id) %>% 
-    # ignore interactions with self
-    dplyr::filter(screen_name != interacted_with) |> 
-    dplyr::rename(from = screen_name, to = interacted_with)
-}
+install.packages("igraph")
+library(igraph)
+
+follow_igrap = graph_from_data_frame(total_foll_com, directed = TRUE, vertices = NULL)
+
+cf_igrap = graph_from_data_frame(common_follower, directed = TRUE, vertices = NULL)
+
+print(follow_igrap)
+
+
+plot.igraph(cf_igrap)
+
+layout_with_lgl(cf_igrap)
 
 
 
