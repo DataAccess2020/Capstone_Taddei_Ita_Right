@@ -53,7 +53,7 @@ clean_df_rw_p = df_rw_p %>% distinct(from_id, .keep_all = TRUE)
 # Now we export our datasets in the folders of the project
 # We use write.csv2 to have SEPARATE COLOUMNS FOR THE VALUES
 
-# RAW DATASET
+# CLEAN DATASET
 # Far right Cultures
 write.csv2(clean_df_fr_c,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Clean Followers DF\\Clean follower fr culture.csv", row.names=FALSE)
 
@@ -66,7 +66,6 @@ write.csv2(clean_df_rw_c,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-
 # Right wing Parties
 write.csv2(clean_df_rw_p,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Clean Followers DF\\Clean follower rw parties.csv", row.names=FALSE)
 
-# COMMENT THE DIFFRENCES BETWEEN DATASET REMOVING DUPLICATES
 
 
 
