@@ -187,6 +187,12 @@ id_follow_grp<- tot_followers %>%  # From the main dataframe
             fllw2 = sum(fllw2, na.rm = T),
             fllw3 = sum(fllw3, na.rm = T),
             fllw4 = sum(fllw4, na.rm = T)) # We sum all the properties of the single follower_id (so if it follows other groups)
-colnames(id_follow_grp) = c("follower_id", "frc", "frp", "rwc", "rwp") # Rename coloumns to be more readble
+colnames(id_follow_grp) = c("follower_id", "frc", "frp", "rwc", "rwp") # Rename columns to be more readable
 ```
+So, now we have a very large dataframe with **447.810 Twitter users** and what groups they follow.
+```{r, echo= F}
+group_follower = read.csv2("C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Total Followers\\Followers properties groups.csv", stringsAsFactors = F)
+options("scipen"=100, "digits"=4)
+head(group_follower)
+```  
 

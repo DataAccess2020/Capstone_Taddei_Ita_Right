@@ -1,6 +1,8 @@
 # Analysis of the follower network
 # First we see how many and which common followers the four main groups share
+install.packages("tidyverse")
 library(tidyverse)
+
 f_fr_c = clean_df_fr_c %>% 
   mutate(to_id = "frc") %>% 
   add_column(fllw1 = 1) %>% 
@@ -64,75 +66,3 @@ colnames(id_follow_grp) = c("follower_id", "frc", "frp", "rwc", "rwp")
 # Now we can see all the common and unique followers by analyzing if they follow only one group or more
 
 write.csv2(id_follow_grp,"C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Total Followers\\Followers properties groups.csv", row.names=FALSE)
-
-
-# Now we see with histograms the quotes of common and unique followers in every group
-
-# Number of follower Comparison within groups
-
-ggplot(total_foll_com, aes(factor(grp), fill = factor(cmmn))) +
-  geom_bar(position = position_dodge2(preserve = "single"))+
-  geom_text(aes(label = after_stat(count)), stat = "count", position=position_dodge(width=0.9), vjust=-0.5, colour = "black") +
-  xlab("Group") +
-  ylab("Number of Total Followers") +
-  scale_x_discrete(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
-  scale_y_continuous(labels = scales::comma)+
-  labs(fill = "Follower")+
-  scale_fill_hue(labels = c("Unique", "Common"))+
-  ggtitle("Common and Unique Followers divided by groups", "Number of follower Comparison within groups")+
-  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
-
-# Proportion of follower Comparison within groups
-
-ggplot(total_foll_com, aes(factor(grp), fill = factor(cmmn))) +
-  geom_bar(position = "fill")+
-  xlab("Group") +
-  ylab("Number of Total Followers") +
-  scale_x_discrete(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
-  scale_y_continuous(labels = scales::comma)+
-  labs(fill = "Follower")+
-  scale_fill_hue(labels = c("Unique", "Common"))+
-  ggtitle("Common and Unique Followers divided by groups", "Proportion of follower Comparison within groups")+
-  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
-
-# Number of follower comparison between groups
-
-ggplot(total_foll_com, aes(factor(cmmn), fill = factor(grp))) +
-  geom_bar(position = position_dodge2(preserve = "single"))+
-  geom_text(aes(label = after_stat(count)), stat = "count", position=position_dodge(width=0.9), vjust=-0.5, colour = "black") +
-  xlab("Follower Type") +
-  ylab("Number of Total Followers") +
-  scale_x_discrete(labels = c('Unique','Common'))+
-  scale_y_continuous(labels = scales::comma)+
-  labs(fill = "Group")+
-  scale_fill_hue(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
-  ggtitle("Common and Unique Followers divided by groups", "Number of follower comparison between groups")+
-  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
-
-
-ggplot(id_follow_grp, aes(factor(fllw_frc, fllw_frp, fllw_rwc, fllw_rwp), fill = factor(grp))) +
-  geom_bar(position = position_dodge2(preserve = "single"))+
-  geom_text(aes(label = after_stat(count)), stat = "count", position=position_dodge(width=0.9), vjust=-0.5, colour = "black") +
-  xlab("Follower Type") +
-  ylab("Number of Total Followers") +
-  scale_x_discrete(labels = c('Unique','Common'))+
-  scale_y_continuous(labels = scales::comma)+
-  labs(fill = "Group")+
-  scale_fill_hue(labels = c('Far-Right Culture','Far-Right Parties','Right-Wing Culture', 'Right-Wing Parties'))+
-  ggtitle("Common and Unique Followers divided by groups", "Number of follower comparison between groups")+
-  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
