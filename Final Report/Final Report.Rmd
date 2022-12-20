@@ -20,12 +20,12 @@ knitr::opts_knit$set(root.dir = 'C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRA
 This first introductive work tries to highlight and recreate the *Itliaian "Right" network*. 
 Especially in this period (after the last victory of the Right-wing Coalition), in many case
 we heard talking about some *return to Fascism*. But it is really the case? We can say that parties, like Lega or Fratelli d'Italia, are fascist parties?
-A way that I figure out to try to solve this *dilemma*, is to analyze the follower network of the Italian Far-right and Right-wings' main Twitter profiles, and see if they share common followers.
+A way that I figure out, trying to solve this *dilemma*, is to analyze the follower network of the Italian Far-right and Right-wings' main Twitter profiles, and see if they share common followers.
 
 
 ## Research Question and Methodology
 
-The main question is: is the Right-wing follower or community truly "fascist"? If so, I think that they would be likely to follow also the *real* Italian Far-right parties and groups. So the main hypothesis is: the ones who follows the Far-right communities and profiles will tend to follow also the Right-wing communities, but not viceversa, so the Right-wing followers will tend to follow only the Right-wing communities and groups.
+The main question is: is the Right-wing follower or community truly "fascist"? If so, I think that they would be likely to follow also the *real* Italian Far-right parties and groups. So the main hypothesis is: the ones who follows the Far-right communities and profiles would be more likely to follow also the Right-wing communities, but not viceversa, so the Right-wing followers will tend to follow only the Right-wing communities and groups.
 
 ### Twitter Lists
 
@@ -176,7 +176,7 @@ tot_followers = rbind(f_fr_c, f_fr_p, f_rw_c, f_rw_p)
 colnames(tot_followers) = c("follower_id", "grp", "fllw1", "fllw2", "fllw3", "fllw4")
 ```
 Now we can see how many followers each group has.
-![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/Hist_Total_follower.png?raw=true)
+![Figure 1: Total Followers divided by Group](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/Hist_Total_follower.png?raw=true)
 
 As we can see, and as we wrote before, the Far-right area is very limited compared to the Right-wing, also with the methodological coercion that we settled.
 Now we want to see how many common and unique followers there are, and what they follow:
@@ -195,4 +195,59 @@ group_follower = read.csv2("C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE CO
 options("scipen"=100, "digits"=4)
 head(group_follower)
 ```  
+### Data Analysis 
+With this first approach, I want to show how the groups' followers network is connected between each other.
+In order to do so, I plot the groups by subsetting them (with setted parameters, `variable group == 1`, so, in other terms, keeping "costant", group by group, only the ones who follow the *independent x group*) and then comparing with each other groups using `ggplot2` package, and then with `gridExtra` package and `plot_grid` function I put the three plots (for each group).
+Here it is a script example:
+```{r, message = F, warning = F, eval=FALSE}
+# FAR RIGHT CULTURE
+# We subset the main dataframe to select only the one who follow the Far-Right Culture group, and see which other groups they follow
+sub1 = subset(id_follow_grp, frc == 1)
+# Far-Right Culture compared to Right-wing Culture
+frc1 = ggplot(sub1, aes(factor(frc), fill = factor(rwc))) +
+  geom_bar(position="stack")+
+  geom_text(aes(label = paste0(round(after_stat(count)/sum(count)*100,1), "%")), stat = "count", position = position_stack(vjust = 0.5), colour = "black", size = 5) + # We put percentages to be more readable
+  xlab("Far-Right Culture Follower") +
+  ylab("Number of Total Followers")+ # We customize our plot axis
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Right-wing Culture")+ # We customize our plot legend
+  scale_fill_hue(labels = c('Not Follow','Follow'))+
+  coord_flip() # We put the plot in horizontal form
+# Far-Right Culture compared to RFar-Right Parties
+frc2 = ggplot(sub1, aes(factor(frc), fill = factor(frp))) +
+  geom_bar(position="stack")+
+  geom_text(aes(label = paste0(round(after_stat(count)/sum(count)*100,1), "%")), stat = "count", position = position_stack(vjust = 0.5), colour = "black", size = 5) +
+  xlab("Far-Right Culture Follower") +
+  ylab("Number of Total Followers")+
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Far-Right Parties")+
+  scale_fill_hue(labels = c('Not Follow','Follow'))+
+  coord_flip()
+# Far-Right Culture compared to Right-wing Parties
+frc3 = ggplot(sub1, aes(factor(frc), fill = factor(rwp))) +
+  geom_bar(position="stack")+
+  geom_text(aes(label = paste0(round(after_stat(count)/sum(count)*100,1), "%")), stat = "count", position = position_stack(vjust = 0.5), colour = "black", size = 5) +
+  xlab("Far-Right Culture Follower") +
+  ylab("Number of Total Followers")+
+  scale_y_continuous(labels = scales::comma)+
+  labs(fill = "Right-wing Parties")+
+  scale_fill_hue(labels = c('Not Follow','Follow'))+
+  coord_flip()
+# We merge all the three plots in one by using:
+install.packages("cowplot")
+library(cowplot)
+plot_grid(frc2, frc1, frc3, nrow = 3, rel_widths = c(0.75,0.75, 0.75))+
+  ggtitle("Total Followers Far-Right Culture")+ # We put the main title
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
+```
+After doing this for all the groups we obtain these polts:
+![Figure 2: Comparison Plot for Far-Right Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRC_confront_perc.png?raw=true)
+![Figure 3: Comparison Plot for Far-Right Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRP_confront_perc.png?raw=true)
+![Figure 4: Comparison Plot for Right-wing Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWC_confront_perc.png?raw=true)
+![Figure 5: Comparison Plot for Right-wing Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWP_confront_perc.png?raw=true)
 
+### Results
+dire dellipotesi giusto e prendere ad esempio qualche percentuiale
+
+conclusioni
+lavoro che puo essere inizio, difficoltà a fare grafico di network, ma sarebbe molto interessante da vedere visivamente
