@@ -4,6 +4,9 @@ subtitle: "The Twitter Network between Italian Far-right and Right-wing culture 
 author: "Federico Taddei"
 date: "`r Sys.Date()`"
 output: html_document
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r setup, include=FALSE}
@@ -11,32 +14,35 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = 'C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Scripts')
 ```
 
-<center>
-![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Images/banner-NFVM.jpg?raw=true){width=50% height=50%}
-</center>
+<center>![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Images/banner-NFVM.jpg?raw=true){width="50%" height="50%"}</center>
 
 ## Introduction
 
-This first introductive work tries to highlight and recreate the *Itliaian "Right" network*. 
-Especially in this period (after the last victory of the Right-wing Coalition), in many case
-we heard talking about some *return to Fascism*. But it is really the case? We can say that parties, like Lega or Fratelli d'Italia, are fascist parties?
+This first introductive work tries to highlight and recreate the *Italian "Right" network*.
+Especially in this period (after the last victory of the Right-wing Coalition), in many case we heard talking about some *return to Fascism*.
+But it is really the case?
+We can say that parties, like Lega or Fratelli d'Italia, are fascist parties?
 A way that I figure out, trying to solve this *dilemma*, is to analyze the follower network of the Italian Far-right and Right-wings' main Twitter profiles, and see if they share common followers.
-
 
 ## Research Question and Methodology
 
-The main question is: is the Right-wing follower or community truly "fascist"? If so, I think that they would be likely to follow also the *real* Italian Far-right parties and groups. So the main hypothesis is: the ones who follows the Far-right communities and profiles would be more likely to follow also the Right-wing communities, but not viceversa, so the Right-wing followers will tend to follow only the Right-wing communities and groups.
+The main question is: is the Right-wing follower or community truly "fascist"?
+If so, I think that they would be likely to follow also the *real* Italian Far-right parties and groups.
+So the main hypothesis is: the ones who follows the Far-right communities and profiles would be more likely to follow also the Right-wing communities, but not viceversa, so the Right-wing followers will tend to follow only the Right-wing communities and groups.
 
 ### Twitter Lists
 
 In order to do so, I create publics list on Twitter, which you can see here:
 
-- Far-right Culture: https://twitter.com/i/lists/1600967243881451521
-- Far-right Parties: https://twitter.com/i/lists/1600600462612434969
-- Right-wing Culture: https://twitter.com/i/lists/1601188241394237442
-- Right-wing Parties: https://twitter.com/i/lists/1601142337874395136
+-   Far-right Culture: <https://twitter.com/i/lists/1600967243881451521>
+-   Far-right Parties: <https://twitter.com/i/lists/1600600462612434969>
+-   Right-wing Culture: <https://twitter.com/i/lists/1601188241394237442>
+-   Right-wing Parties: <https://twitter.com/i/lists/1601142337874395136>
 
-The *Far-right Culture* contains newspaper, cultural associations, communities and musical groups (like "Il Primato Nazionale" newspaper, Presidio Milano or "Hobbit" musical group).  The *Far-right Parties* contains the main parties and their youth movements (Forza Nuova, Lotta Studentesca, Casapuond Italia, Blocco Studentesco, Lealtà Azione, ...). The *Right-wing Culture* contains newspaper, cultural associations and public figure link to that political area (La verità, Buttafuoco, Daniele Capezzone, Nicola Porro, ...). And finally, the *Right-wing Parties* contains the main parties and political figures (Lega, Fratelli d'Italia, Giorgia Meloni, Matteo Salvini, Ignazio La Russa, ...).
+The *Far-right Culture* contains newspaper, cultural associations, communities and musical groups (like "Il Primato Nazionale" newspaper, Presidio Milano or "Hobbit" musical group).
+The *Far-right Parties* contains the main parties and their youth movements (Forza Nuova, Lotta Studentesca, Casapuond Italia, Blocco Studentesco, Lealtà Azione, ...).
+The *Right-wing Culture* contains newspaper, cultural associations and public figure link to that political area (La verità, Buttafuoco, Daniele Capezzone, Nicola Porro, ...).
+And finally, the *Right-wing Parties* contains the main parties and political figures (Lega, Fratelli d'Italia, Giorgia Meloni, Matteo Salvini, Ignazio La Russa, ...).
 One clarification has to be made, due to the limited amount of "real follower" that the Far-right also have in the political elections, not only on social media, I took in my lists also all the local pages that I found of the far-right parties, in order to gain more network to work with, also because, for example, only Lega and Fratelli d'Italia togheter have a network of more than 200.000 follower, each.
 So to obtain some usable data I have done this methodological assumption.
 
@@ -44,15 +50,19 @@ So to obtain some usable data I have done this methodological assumption.
 
 The main steps to do to get the data and analyse them:
 
-- Get a Twitter Academic API
-- Make the list on Twitter
-- Gain the data from Twitter
-- Clear and export the data
-- First graphical analysis of the data 
+-   Get a Twitter Academic API
+-   Make the list on Twitter
+-   Gain the data from Twitter
+-   Clear and export the data
+-   First graphical analysis of the data
 
 ## Data and Results
+
 ### Raw Data
-After obtaining the academic API from Twitter, I started to gain the data using the `rtweet` package. First, using the `lists_members` function, I obtain all the IDs of the memeber of the list and then I `tibble` them in a dataframes.
+
+After obtaining the academic API from Twitter, I started to gain the data using the `rtweet` package.
+First, using the `lists_members` function, I obtain all the IDs of the memeber of the list and then I `tibble` them in a dataframes.
+
 ```{r, message = F, warning = F, eval=FALSE}
 # Example for the Far_right Parties list:
 library(rtweet)
@@ -72,12 +82,15 @@ far_right_parties = lists_members(
 
 name_far_right_parties = tibble(far_right_parties$screen_name)
 
-```   
+```
+
 To get all the followers of all the lists' users I firstly convert the `screen_names` in the tibble into a character vector to automatize the process with a general function.
+
 ```{r, message = F, warning = F, eval=FALSE}
 # Tranform the values in a character vector:
 list_fr_culture = c(far_right_culture$screen_name)
-``` 
+```
+
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 list_fr_culture[7]
 list_fr_culture[12] 
@@ -87,8 +100,10 @@ list_fr_culture[12]
 
 # Now it gave use all the Screen-Name of the profiles like single units, now we can automatize the get_follower function with a general function
 
-```  
+```
+
 Now with a general function and `lapply` function we can download all the followers of every single user in the lists.
+
 ```{r, message = F, warning = F, eval=FALSE}
 # Now we get the follower through rtweet, creating a general function to use:
 
@@ -100,8 +115,10 @@ getAllFollowers <- function (name) {
 
 follower_fr_culture <- lapply(X = list_fr_culture, FUN = getAllFollowers) 
 # We use lapply to repeat the same function on all the profile in the list
-```  
+```
+
 After doing this for all the list we obtain four large list with all the followers of the users and we have to transform them in dataframes using the `purr` package.
+
 ```{r, message = F, warning = F, eval=FALSE}
 library(purrr)
 
@@ -111,21 +128,27 @@ df_fr_p <- map_dfr(follower_fr_parties, bind_rows)
 df_rw_c <- map_dfr(follower_rw_culture, bind_rows)
 df_rw_p <- map_dfr(follower_rw_parties, bind_rows)
 ```
+
 Then I exported all the *raw dataframes* in the `Data` folder:
+
 ```{r, echo= F}
 df_fr_c = read.csv("C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Raw Followers DF\\RAW follower fr culture.csv")
 
 head(df_fr_c)
-```  
+```
+
 So we have four raw dataframes:
 
-- Far-right Culture: 48.897 followers
-- Far-right Parties: 124.852 followers
-- Right-wing Culture: 295.983 followers
-- Right-wing Parties: 317.547 followers
+-   Far-right Culture: 48.897 followers
+-   Far-right Parties: 124.852 followers
+-   Right-wing Culture: 295.983 followers
+-   Right-wing Parties: 317.547 followers
 
 ### Data Cleaning
-Now we ignore the duplicates, in every dataframe. The idea is to see who are the followers of the four main groups (as they were single users with all the followers) so: Far Right Cultures and Parties, Right-wing Cultures and Parties.
+
+Now we ignore the duplicates, in every dataframe.
+The idea is to see who are the followers of the four main groups (as they were single users with all the followers) so: Far Right Cultures and Parties, Right-wing Cultures and Parties.
+
 ```{r, message = F, warning = F, eval=FALSE}
 library(dplyr)
 
@@ -139,7 +162,9 @@ clean_df_rw_c = df_rw_c %>% distinct(from_id, .keep_all = TRUE)
 
 clean_df_rw_p = df_rw_p %>% distinct(from_id, .keep_all = TRUE)
 ```
+
 They are also exported as *clean dataframes* in the `Clean Followers DF` sub-folder (in the `Data` folder).
+
 ```{r, message = F, warning = F, eval=FALSE}
 # We want to create a general dataframe with all the followers, divided by the main group which they refer to:
 # First we see how many and which common followers the four main groups share
@@ -175,11 +200,13 @@ f_rw_p = clean_df_rw_p %>%
 tot_followers = rbind(f_fr_c, f_fr_p, f_rw_c, f_rw_p)
 colnames(tot_followers) = c("follower_id", "grp", "fllw1", "fllw2", "fllw3", "fllw4")
 ```
+
 Now we can see how many followers each group has.
 ![Figure 1: Total Followers divided by Group](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/Hist_Total_follower.png?raw=true)
 
 As we can see, and as we wrote before, the Far-right area is very limited compared to the Right-wing, also with the methodological coercion that we settled.
 Now we want to see how many common and unique followers there are, and what they follow:
+
 ```{r, message = F, warning = F, eval=FALSE}
 id_follow_grp<- tot_followers %>%  # From the main dataframe
   group_by(follower_id) %>%  # We keep our focus on the follower_id, and group together the same row by the same follower_id
@@ -189,16 +216,21 @@ id_follow_grp<- tot_followers %>%  # From the main dataframe
             fllw4 = sum(fllw4, na.rm = T)) # We sum all the properties of the single follower_id (so if it follows other groups)
 colnames(id_follow_grp) = c("follower_id", "frc", "frp", "rwc", "rwp") # Rename columns to be more readable
 ```
+
 So, now we have a very large dataframe with **447.810 Twitter users** and what groups they follow.
+
 ```{r, echo= F}
 group_follower = read.csv2("C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Data\\Total Followers\\Followers properties groups.csv", stringsAsFactors = F)
 options("scipen"=100, "digits"=4)
 head(group_follower)
-```  
-### Data Analysis 
+```
+
+### Data Analysis
+
 With this first approach, I want to show how the groups' followers network is connected between each other.
 In order to do so, I plot the groups by subsetting them (with setted parameters, `variable group == 1`, so, in other terms, keeping "costant", group by group, only the ones who follow the *independent x group*) and then comparing with each other groups using `ggplot2` package, and then with `gridExtra` package and `plot_grid` function I put the three plots (for each group).
 Here it is a script example:
+
 ```{r, message = F, warning = F, eval=FALSE}
 # FAR RIGHT CULTURE
 # We subset the main dataframe to select only the one who follow the Far-Right Culture group, and see which other groups they follow
@@ -240,27 +272,37 @@ plot_grid(frc2, frc1, frc3, nrow = 3, rel_widths = c(0.75,0.75, 0.75))+
   ggtitle("Total Followers Far-Right Culture")+ # We put the main title
   theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)))
 ```
-After doing this for all the groups we obtain these polts:
-![Figure 2: Comparison Plot for Far-Right Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRC_confront_perc.png?raw=true)
-![Figure 3: Comparison Plot for Far-Right Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRP_confront_perc.png?raw=true)
-![Figure 4: Comparison Plot for Right-wing Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWC_confront_perc.png?raw=true)
-![Figure 5: Comparison Plot for Right-wing Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWP_confront_perc.png?raw=true)
+
+After doing this for all the groups we obtain these polts: ![Figure 2: Comparison Plot for Far-Right Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRC_confront_perc.png?raw=true) ![Figure 3: Comparison Plot for Far-Right Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/FRP_confront_perc.png?raw=true)
+![Figure 4: Comparison Plot for Right-wing Culture](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWC_confront_perc.png?raw=true) ![Figure 5: Comparison Plot for Right-wing Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWP_confront_perc.png?raw=true)
 
 ### Results
-As we can see the main hypothesis that we point out at the beginning of this paper is correct, but with a smaller effect than I thought. In fact the bigger percentages of common/shared follower can be found between the Far-right Culture and the Far-right Parties:
 
-- **53.7%** of the Far-right Culture group also follow the Far-right Parties group.
-- **29%** of the Far-right Parties group also follow the Far-right Culture group.
+As we can see the main hypothesis that we point out at the beginning of this paper is correct, but with a smaller effect than I thought.
+In fact the bigger percentages of common/shared follower can be found between the Far-right Culture and the Far-right Parties:
+
+-   **53.7%** of the Far-right Culture group also follow the Far-right Parties group.
+-   **29%** of the Far-right Parties group also follow the Far-right Culture group.
 
 In general we can say that, it seems that, on average, a third of the ones who follow the Far-right Culture group also follow the other political group.
-For the Right-wing group we can see that percentages of common follower are very low, in regard of the Far-right group, with the smallest percentages in the relation Right-wing Parites follower and all the Far-right area. So it seems that Right-wing followers are not interested in the Far-right movement or cultural area. But, on the other hand, we can see a good connection within the Right-wing followers: between the cultural and the political area.
+For the Right-wing group we can see that percentages of common follower are very low, in regard of the Far-right group, with the smallest percentages in the relation Right-wing Parites follower and all the Far-right area.
+So it seems that Right-wing followers are not interested in the Far-right movement or cultural area.
+But, on the other hand, we can see a good connection within the Right-wing followers: between the cultural and the political area.
 
-- **30.5%** of the Right-wing Culture group also follow the Right-wing Parties group.
-- **23.2%** of the Right-wing Parties group also follow the Right-wing Culture group.
+-   **30.5%** of the Right-wing Culture group also follow the Right-wing Parties group.
+-   **23.2%** of the Right-wing Parties group also follow the Right-wing Culture group.
 
-It's also interesting to see that, on average, one third of the *"Cultural followers"* also follow their Parties/political group, but not viceversa. Interestingly, finally, the *best* percentages of common/shared followers come from the **Far-Right Culture group**.
+It's also interesting to see that, on average, one third of the *"Cultural followers"* also follow their Parties/political group, but not viceversa.
+Interestingly, finally, the *best* percentages of common/shared followers come from the **Far-Right Culture group**.
 
 ## Final Conclusion
-We see a primarily analysis on how the "Italian Right" it's connected on Twitter, obviously it's a first approach and I really enjoy doing it. I am sure that I have to extend the lists' members to gain the more realistic results, in fact I have the suspect that I didn't reach all the followers (I have this suspect especially for the Right-wing parties list), so I will provide to correct and expand the lists. Initially I was planning to use the `igraph` package to visualize also the network, but I had some problems trying to figure out how to set the `edges` and `vertex/nodes`, I think that maybe with the next courses that we will take part, maybe I will gain the skills to do this graphical visualization, for sure this project it's not finished, and as soon as I will have the coding skill to do it, I will update this project.
 
-Finally, with this short research I would like to start a bigger project (maybe the master thesis itself), trying to understand and analyse the *submerged* network of the "Italian Right". I think that our Country has not close yet with its past. So analyzing, studying and trying to understand why and how "fascism" (in different forms) still survive nowdays and how the network spread (especially on social network). I think that the best method to really understand our history and move on is to have a scientific-analytic approach: my aim is to mix the historic research (due to my previous degree in Political Science, with a particular regard to history of political movement) with the quantitative data analysis. Shouting or slogans will never permit a real consciousness of what we are, where we came from and why so strong political ideas still survive in our society.
+We see a primarily analysis on how the "Italian Right" it's connected on Twitter, obviously it's a first approach and I really enjoy doing it.
+I am sure that I have to extend the lists' members to gain the more realistic results, in fact I have the suspect that I didn't reach all the followers (I have this suspect especially for the Right-wing parties list), so I will provide to correct and expand the lists.
+Initially I was planning to use the `igraph` package to visualize also the network, but I had some problems trying to figure out how to set the `edges` and `vertex/nodes`, I think that maybe with the next courses that we will take part, maybe I will gain the skills to do this graphical visualization, for sure this project it's not finished, and as soon as I will have the coding skill to do it, I will update this project.
+
+Finally, with this short research I would like to start a bigger project (maybe the master thesis itself), trying to understand and analyse the *submerged* network of the "Italian Right".
+I think that our Country has not close yet with its past.
+So analyzing, studying and trying to understand why and how "fascism" (in different forms) still survive nowdays and how the network spread (especially on social network).
+I think that the best method to really understand our history and move on is to have a scientific-analytic approach: my aim is to mix the historic research (due to my previous degree in Political Science, with a particular regard to history of political movement) with the quantitative data analysis.
+Shouting or slogans will never permit a real consciousness of what we are, where we came from and why so strong political ideas still survive in our society.
