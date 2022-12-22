@@ -247,7 +247,19 @@ After doing this for all the groups we obtain these polts:
 ![Figure 5: Comparison Plot for Right-wing Parties](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Plots/RWP_confront_perc.png?raw=true)
 
 ### Results
-dire dellipotesi giusto e prendere ad esempio qualche percentuiale
+As we can see the main hypothesis that we point out at the beginning of this paper is correct, but with a smaller effect than I thought. In fact the bigger percentages of common/shared follower can be found between the Far-right Culture and the Far-right Parties:
 
+- **53.7%** of the Far-right Culture group also follow the Far-right Parties group.
+- **29%** of the Far-right Parties group also follow the Far-right Culture group.
+
+In general we can say that, it seems that, on average, a third of the ones who follow the Far-right Culture group also follow the other political group.
+For the Right-wing group we can see that percentages of common follower are very low, in regard of the Far-right group, with the smallest percentages in the relation Right-wing Parites follower and all the Far-right area. So it seems that Right-wing followers are not interested in the Far-right movement or cultural area. But, on the other hand, we can see a good connection within the Right-wing followers: between the cultural and the political area.
+
+- **30.5%** of the Right-wing Culture group also follow the Right-wing Parties group.
+- **23.2%** of the Right-wing Parties group also follow the Right-wing Culture group.
+
+It's also interesting to see that, on average, one third of the *"Cultural followers"* also follow their Parties/political group, but not viceversa. Interestingly, finally, the *best* percentages of common/shared followers come from the **Far-Right Culture group**.
+
+## Final Conclusion
 conclusioni
 lavoro che puo essere inizio, difficoltà a fare grafico di network, ma sarebbe molto interessante da vedere visivamente
