@@ -2,7 +2,7 @@
 ## A project by Federico Taddei
 ## Introduction
 
-This first introductive work tries to highlight and recreate the *Itliaian "Right" network*. 
+This first introductive work tries to highlight and recreate the *Italiaian "Right" network*. 
 Especially in this period (after the last victory of the Right-wing Coalition), in many case
 we heard talking about some *return to Fascism*. But it is really the case? We can say that parties, like Lega or Fratelli d'Italia, are fascist parties?
 A way that I figure out, trying to solve this *dilemma*, is to analyze the follower network of the Italian Far-right and Right-wings' main Twitter profiles, and see if they share common followers.
