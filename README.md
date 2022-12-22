@@ -1,4 +1,5 @@
-# Twitter Fascism in Italy: how people are connected? A project by Federico Taddei
+# Twitter Fascism in Italy: how people are connected?
+## A project by Federico Taddei
 ## Introduction
 
 This first introductive work tries to highlight and recreate the *Itliaian "Right" network*. 
