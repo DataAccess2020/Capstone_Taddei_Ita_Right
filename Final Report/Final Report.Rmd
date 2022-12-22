@@ -1,9 +1,14 @@
 ---
-title: "Twitter Fascism in Italy: how people are connected?"
+title: 'Twitter Fascism in Italy: how people are connected?'
 subtitle: "The Twitter Network between Italian Far-right and Right-wing culture and parties: a first approach."
 author: "Federico Taddei"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    highlight: pygments
 ---
 
 ```{r setup, include=FALSE}
@@ -40,7 +45,7 @@ The *Far-right Culture* contains newspaper, cultural associations, communities a
 One clarification has to be made, due to the limited amount of "real follower" that the Far-right also have in the political elections, not only on social media, I took in my lists also all the local pages that I found of the far-right parties, in order to gain more network to work with, also because, for example, only Lega and Fratelli d'Italia togheter have a network of more than 200.000 follower, each.
 So to obtain some usable data I have done this methodological assumption.
 
-### Work Table
+### Work Flow
 
 The main steps to do to get the data and analyse them:
 
@@ -261,6 +266,6 @@ For the Right-wing group we can see that percentages of common follower are very
 It's also interesting to see that, on average, one third of the *"Cultural followers"* also follow their Parties/political group, but not viceversa. Interestingly, finally, the *best* percentages of common/shared followers come from the **Far-Right Culture group**.
 
 ## Final Conclusion
-We see a primarily analysis on how the "Italian Right" it's connected on Twitter, obviously it's a first approach and I really enjoy doing it. Initially I was planning to use the `igraph` package to visualize also the network, but I had some problems trying to figure out how to set the `edges` and `vertex/nodes`, I think that maybe with the next courses that we will take part, maybe I will gain the skills to do this graphical visualization, for sure this project it's not finished, and as soon as I will have the coding skill to do it, I will update this project.
+We see a primarily analysis on how the "Italian Right" it's connected on Twitter, obviously it's a first approach and I really enjoy doing it. I am sure that I have to extend the lists' members to gain the more realistic results, in fact I have the suspect that I didn't reach all the followers (I have this suspect especially for the Right-wing parties list), so I will provide to correct and expand the lists. Initially I was planning to use the `igraph` package to visualize also the network, but I had some problems trying to figure out how to set the `edges` and `vertex/nodes`, I think that maybe with the next courses that we will take part, maybe I will gain the skills to do this graphical visualization, for sure this project it's not finished, and as soon as I will have the coding skill to do it, I will update this project.
 
 Finally, with this short research I would like to start a bigger project (maybe the master thesis itself), trying to understand and analyse the *submerged* network of the "Italian Right". I think that our Country has not close yet with its past. So analyzing, studying and trying to understand why and how "fascism" (in different forms) still survive nowdays and how the network spread (especially on social network). I think that the best method to really understand our history and move on is to have a scientific-analytic approach: my aim is to mix the historic research (due to my previous degree in Political Science, with a particular regard to history of political movement) with the quantitative data analysis. Shouting or slogans will never permit a real consciousness of what we are, where we came from and why so strong political ideas still survive in our society.
