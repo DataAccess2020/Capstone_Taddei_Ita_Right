@@ -3,12 +3,7 @@ title: 'Twitter Fascism in Italy: how people are connected?'
 subtitle: "The Twitter Network between Italian Far-right and Right-wing culture and parties: a first approach."
 author: "Federico Taddei"
 date: "`r Sys.Date()`"
-output:
-  pdf_document:
-    toc: yes
-  html_document:
-    toc: yes
-    highlight: pygments
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -17,7 +12,7 @@ knitr::opts_knit$set(root.dir = 'C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRA
 ```
 
 <center>
-![](https://www.cantiere.org/wp-content/uploads/2021/10/banner-NFVM.jpg){width=50% height=50%}
+![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Images/banner-NFVM.jpg?raw=true){width=50% height=50%}
 </center>
 
 ## Introduction
