@@ -13,6 +13,9 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = 'C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Scripts')
 ```
+GitHub repository link: https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right
+GitHub statistics: "[...] pushed 19 commits to main. On main, 17 files have changed and there have been 1,003,500 additions and 554,438 deletions."
+
 
 <center>![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Images/banner-NFVM.jpg?raw=true){width="50%" height="50%"}</center>
 
