@@ -13,8 +13,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = 'C:\\Users\\39333\\Desktop\\UNIVERSITA\\MAGISTRALE COM-DAPS&CO\\CORSI\\DATA ACCESS AND REGULATIONS\\CAPSTONE PROJECT\\Capstone_Taddei_Ita_Right\\Scripts')
 ```
-GitHub repository link: https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right
-GitHub statistics: "[...] pushed 19 commits to main. On main, 17 files have changed and there have been 1,003,500 additions and 554,438 deletions."
+- GitHub repository link: https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right
+- GitHub statistics: "[...] pushed 20 commits to main. On main, 17 files have changed and there have been 1,003,500 additions and 554,438 deletions."
 
 
 <center>![](https://github.com/DataAccess2020/Capstone_Taddei_Ita_Right/blob/main/Images/banner-NFVM.jpg?raw=true){width="50%" height="50%"}</center>
@@ -51,13 +51,14 @@ So to obtain some usable data I have done this methodological assumption.
 
 ### Work Flow
 
-The main steps to do to get the data and analyse them:
+The main steps I followed to get the data and analyse them:
 
 -   Get a Twitter Academic API
 -   Make the list on Twitter
 -   Gain the data from Twitter
 -   Clear and export the data
 -   First graphical analysis of the data
+-   Conclusions
 
 ## Data and Results
 
